@@ -1,5 +1,5 @@
 BIN		:= coolgame
-LIBS	:= $(shell pkg-config --libs glfw3) -lGL -ldl
+LIBS	:= $(shell pkg-config --libs glfw3 gl) -ldl -lz -lm 
 BINDIR	:= .
 SRCDIR	:= src
 CC		:= gcc

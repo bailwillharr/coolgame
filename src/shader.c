@@ -38,6 +38,9 @@ unsigned int shader_load(enum shader s)
 		src_vert_len =
 			&_binary_src_shaders_basic_vert_end -
 			&_binary_src_shaders_basic_vert_start;
+		src_frag_len =
+			&_binary_src_shaders_basic_frag_end -
+			&_binary_src_shaders_basic_frag_start;
 		break;
 	default:
 		fprintf(stderr, "Unknown shader enum: %d", s);
@@ -51,7 +54,16 @@ unsigned int shader_load(enum shader s)
 	glAttachShader(shader_program, vert_shader);
 	glAttachShader(shader_program, frag_shader);
 	glLinkProgram(shader_program);
+	glValidateProgram(shader_program);
+
+	glDeleteShader(vert_shader);
+	glDeleteShader(frag_shader);
 
 	return shader_program;
 	
+}
+
+void shader_delete(unsigned int id)
+{
+	glDeleteProgram(id);
 }

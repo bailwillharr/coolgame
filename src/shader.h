@@ -3,3 +3,4 @@ enum shader {
 };
 
 unsigned int shader_load(enum shader s);
+void shader_delete(unsigned int id);
